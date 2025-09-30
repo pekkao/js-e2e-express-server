@@ -28,10 +28,12 @@ steps:
     archiveFile: '$(Build.ArtifactStagingDirectory)/js-e2e-express-server.zip'
     replaceExistingArchive: true
 
-- task: PublishBuildArtifacts@1
+- task: DownloadBuildArtifacts@0
   inputs:
-    pathToPublish: '$(Build.ArtifactStagingDirectory)'
+    buildType: 'current'
+    downloadType: 'single'
     artifactName: 'drop'
+    downloadPath: '$(System.ArtifactsDirectory)'
 
 - task: AzureWebApp@1
   inputs:
