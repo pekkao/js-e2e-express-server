@@ -20,16 +20,21 @@ steps:
     npm run build
   displayName: 'npm install and build'
 
+- task: ArchiveFiles@2
+  inputs:
+    rootFolderOrFile: '$(Build.SourcesDirectory)'
+    includeRootFolder: false
+    archiveType: 'zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/js-e2e-express-server.zip'
+    replaceExistingArchive: true
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    pathToPublish: '$(Build.ArtifactStagingDirectory)'
+    artifactName: 'drop'
+
 - task: AzureWebApp@1
   inputs:
     azureSubscription: 'Azure Connection'
     appType: 'webApp'
     appName: 'pojala-exercise-12'
-
-- task: ArchiveFiles@2
-  inputs:
-    rootFolderOrFile: '$(System.DefaultWorkingDirectory)'
-    includeRootFolder: false
-    archiveType: 'zip'
-    archiveFile: '$(Build.ArtifactStagingDirectory)/app.zip'
-    replaceExistingArchive: true
