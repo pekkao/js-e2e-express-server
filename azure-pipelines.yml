@@ -45,5 +45,5 @@ steps:
   inputs:
     azureSubscription: 'Azure Connection'
     appType: 'webApp'
-    appName: pojala-exercise-13-lecture
+    appName: exercise-13-pojala-lecture
     package: '$(System.ArtifactsDirectory)/drop/js-e2e-express-server.zip'
